@@ -1,0 +1,11 @@
+name: map_world
+title: map_world
+account: romankyrychenko
+server: shinyapps.io
+appId: 168162
+bundleId: 770032
+url: https://romankyrychenko.shinyapps.io/map_world/
+when: 1490859619.45282
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: TM_WORLD_BORDERS_SIMPL-0.3.dbf|TM_WORLD_BORDERS_SIMPL-0.3.prj|TM_WORLD_BORDERS_SIMPL-0.3.shp|TM_WORLD_BORDERS_SIMPL-0.3.shx
