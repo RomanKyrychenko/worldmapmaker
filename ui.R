@@ -1,3 +1,5 @@
+#install.packages("mapproj")
+#library(mapproj)
 shinyUI(fluidPage(
   titlePanel("Карта світу"),
   sidebarLayout(
@@ -21,7 +23,7 @@ shinyUI(fluidPage(
     ),
     mainPanel(tabsetPanel(
       tabPanel("Карта",plotOutput('plot', width = "100%", height = "750px")),
-      tabPanel("Таблиця",tableOutput('contents'))
+      tabPanel("Таблиця",htable("tbl", colHeaders="provided"))
     )
     )
   )

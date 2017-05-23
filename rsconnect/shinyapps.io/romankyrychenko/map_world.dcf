@@ -2,10 +2,10 @@ name: map_world
 title: map_world
 account: romankyrychenko
 server: shinyapps.io
-appId: 168162
-bundleId: 770032
+appId: 169915
+bundleId: 837970
 url: https://romankyrychenko.shinyapps.io/map_world/
-when: 1490859619.45282
+when: 1495555237.31268
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: TM_WORLD_BORDERS_SIMPL-0.3.dbf|TM_WORLD_BORDERS_SIMPL-0.3.prj|TM_WORLD_BORDERS_SIMPL-0.3.shp|TM_WORLD_BORDERS_SIMPL-0.3.shx
+ignoredFiles: .RData|~$world_map.xlsx|downloadPlot.pdf|TM_WORLD_BORDERS_SIMPL-0.3.dbf|TM_WORLD_BORDERS_SIMPL-0.3.prj|TM_WORLD_BORDERS_SIMPL-0.3.shp|TM_WORLD_BORDERS_SIMPL-0.3.shx|world_map.xlsx
