@@ -1,3 +1,4 @@
+Sys.setlocale(,"UK_ua")
 library(shiny)
 library(openxlsx)
 library(lattice)
@@ -15,6 +16,7 @@ library(maps)
 library(geosphere)
 library(plyr)
 library(shinyTable)
+library(mapproj)
 load("mapdata.RData")
 
 #world.map <- readShapePoly("TM_WORLD_BORDERS_SIMPL-0.3.shp")

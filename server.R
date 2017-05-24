@@ -1,4 +1,10 @@
 shinyServer(function(input, output, session){
+  output$text <- renderPrint({
+    s <- "Ввід даних відбувається через таблицю українською мовою. Кнопки регулювання нахилу варто застосовувати тільки при проекції ortho. Регулювати ширину не варто (ця опція для розробника). Довжину можна."
+    s  
+  })
+  
+  
   cachedTbl <- NULL
   
   
@@ -11,9 +17,9 @@ shinyServer(function(input, output, session){
   
   output$tbl <- renderHtable({
     if (is.null(input$tbl)){
-      rows <- 5
-      tbl <- data.frame(list(num1=1:rows, 
-                             num2=(1:rows)*20))
+      rows <- 25
+      tbl <- data.frame(list(Країна=1:rows, 
+                             Згадки=(1:rows)))
       rownames(tbl) <- LETTERS[2:(rows+1)]
       validate(tbl)
       cachedTbl <<- tbl      
@@ -61,7 +67,7 @@ shinyServer(function(input, output, session){
         scale_fill_gradient(low="#f0f0f0", high="#4d738a",na.value = "#f0f0f0") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
         with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5,family="PT Sans")) +
-        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#31a354",fill="#31a354",size=10))+
+        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))+
         with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white",family="PT Sans")) +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
@@ -107,7 +113,7 @@ shinyServer(function(input, output, session){
         scale_fill_gradient(low="#f0f0f0", high="#4d738a",na.value = "#f0f0f0") +
         geom_polygon(aes(long,lat,fill = X1,group=group,id=id), data =world.ggmap, color = "grey",size=0.1)+
         with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5)) +
-        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#31a354",fill="#31a354",size=10))+
+        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))+
         with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white")) +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
@@ -151,7 +157,7 @@ shinyServer(function(input, output, session){
         scale_fill_gradient(low="#f0f0f0", high="#4d738a",na.value = "#f0f0f0") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
         with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5)) +
-        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#31a354",fill="#31a354",size=10))+
+        with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))+
         with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white")) +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
@@ -178,7 +184,7 @@ shinyServer(function(input, output, session){
   })
   
   output$downloadPlot <-  downloadHandler(
-    filename = function(){paste0("zubat_",Sys.Date(),".pdf") },
+    filename = function(){paste0("worldmap_",Sys.Date(),".pdf") },
     content = function(file) {
       cairo_pdf(file, width=15.5, height=10.3)
       print(if(input$typ=="ortho"){
@@ -195,7 +201,7 @@ shinyServer(function(input, output, session){
   )
   
   output$download<-  downloadHandler(
-    filename = function(){paste0("zubat_",Sys.Date(),".png") },
+    filename = function(){paste0("worldmap_",Sys.Date(),".png") },
     content = function(file) {
       png(file, width=1550, height=1030)
       print(if(input$typ=="ortho"){
