@@ -3,8 +3,9 @@ title: map_world
 account: romankyrychenko
 server: shinyapps.io
 appId: 169915
-bundleId: 838926
+bundleId: 882266
 url: https://romankyrychenko.shinyapps.io/map_world/
-when: 1495617127.41695
+when: 1498483318.58155
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: .RData

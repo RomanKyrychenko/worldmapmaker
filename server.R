@@ -1,48 +1,50 @@
 shinyServer(function(input, output, session){
   output$text <- renderPrint({
-    s <- "Ввід даних відбувається через таблицю українською мовою. Кнопки регулювання нахилу варто застосовувати тільки при проекції ortho. Регулювати ширину не варто (ця опція для розробника). Довжину можна."
+    s <- "Кнопки регулювання нахилу варто застосовувати тільки при проекції ortho. Регулювати ширину не варто (ця опція для розробника). Довжину можна."
     s  
   })
   
   
-  cachedTbl <- NULL
-  
-  
-  validate <- function(tbl){
-    updateTableStyle(session, "tbl", "valid",  which(as.numeric(tbl$num2) < 50), 2)
-    updateTableStyle(session, "tbl", "warning",which(as.numeric(tbl$num2) >= 50 &  as.numeric(tbl$num2) < 100), 2)
-    updateTableStyle(session, "tbl", "invalid",which(as.numeric(tbl$num2) >= 100), 2)    
-  }
-  
-  
-  output$tbl <- renderHtable({
-    if (is.null(input$tbl)){
-      rows <- 25
-      tbl <- data.frame(list(Країна=1:rows, 
-                             Згадки=(1:rows)))
-      rownames(tbl) <- LETTERS[2:(rows+1)]
-      validate(tbl)
-      cachedTbl <<- tbl      
-      return(tbl)
-    } else{
-      tbl <- input$tbl
-      #tbl[is.na(as.integer(as.character(tbl[,1]))),1] <- as.character(cachedTbl[is.na(as.integer(as.character(tbl[,1]))),1])
-      validate(tbl)
-      #tbl[as.integer(as.character(tbl[,1])) >= 100,1] <- 99
-      cachedTbl <<- tbl
-      return(tbl)
-    }
-  })
+ # cachedTbl <- NULL
+ # 
+ # 
+ #validate <- function(tbl){
+ #  updateTableStyle(session, "tbl", "valid",  which(as.numeric(tbl$num2) < 50), 2)
+ #  updateTableStyle(session, "tbl", "warning",which(as.numeric(tbl$num2) >= 50 &  as.numeric(tbl$num2) < 100), 2)
+ #  updateTableStyle(session, "tbl", "invalid",which(as.numeric(tbl$num2) >= 100), 2)    
+ #}
+ # 
+ # 
+ # output$tbl <- renderHtable({
+ #   if (is.null(input$tbl)){
+ #     rows <- 25
+ #     tbl <- data.frame(list(Країна=1:rows, 
+ #                            Згадки=c(1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,6,7,8,9)))
+ #     rownames(tbl) <- LETTERS[2:(rows+1)]
+ #     validate(tbl)
+ #     cachedTbl <<- tbl      
+ #     return(tbl)
+ #   } else{
+ #     tbl <- input$tbl
+ #     #tbl[is.na(as.integer(as.character(tbl[,1]))),1] <- as.character(cachedTbl[is.na(as.integer(as.character(tbl[,1]))),1])
+ #     validate(tbl)
+ #     #tbl[as.integer(as.character(tbl[,1])) >= 100,1] <- 99
+ #     cachedTbl <<- tbl
+ #     return(tbl)
+ #   }
+ # })
   df <- reactive({
-    #inFile <- input$file1
-    #
-    #if(is.null(inFile))
-    #  return(NULL)
-    #file.rename(inFile$datapath,
-    #            paste(inFile$datapath, ".xlsx", sep=""))
-    #df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
-    df <- data.frame(input$tbl)
+    inFile <- input$file1
+    
+    if(is.null(inFile))
+      return(NULL)
+    file.rename(inFile$datapath,
+                paste(inFile$datapath, ".xlsx", sep=""))
+    df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
+    #df <- data.frame(input$tbl)
     names(df)[1:2] <- c("X0","X1")
+    df$X0 <- as.character(df$X0)
+    df$X1 <- as.numeric(df$X1)
     zubat <- function(df){
       test_df <- data_frame(X0=unique(world.ggmap$id),X1=NA)
       df <- rbind(df[1:2],test_df[1:2])
@@ -80,14 +82,14 @@ shinyServer(function(input, output, session){
   })
   
   df2 <- reactive({
-    #inFile <- input$file1
-    #
-    #if(is.null(inFile))
-    #  return(NULL)
-    #file.rename(inFile$datapath,
-    #            paste(inFile$datapath, ".xlsx", sep=""))
-    #df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
-    df <- data.frame(input$tbl)
+    inFile <- input$file1
+    
+    if(is.null(inFile))
+      return(NULL)
+    file.rename(inFile$datapath,
+                paste(inFile$datapath, ".xlsx", sep=""))
+    df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
+    #df <- data.frame(input$tbl)
     names(df)[1:2] <- c("X0","X1")
     zubat <- function(df){
       test_df <- data_frame(X0=unique(world.ggmap$id),X1=NA)
@@ -126,14 +128,14 @@ shinyServer(function(input, output, session){
   })
   
   df3 <- reactive({
-    #inFile <- input$file1
-    #
-    #if(is.null(inFile))
-    #  return(NULL)
-    #file.rename(inFile$datapath,
-    #            paste(inFile$datapath, ".xlsx", sep=""))
-    #df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
-    df <- data.frame(input$tbl)
+    inFile <- input$file1
+    
+    if(is.null(inFile))
+      return(NULL)
+    file.rename(inFile$datapath,
+                paste(inFile$datapath, ".xlsx", sep=""))
+    df <-read_excel(paste(inFile$datapath, ".xlsx", sep=""), 1,col_names = FALSE)
+    #df <- data.frame(input$tbl)
     names(df)[1:2] <- c("X0","X1")
     zubat <- function(df){
       test_df <- data_frame(X0=unique(world.ggmap$id),X1=NA)

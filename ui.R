@@ -4,8 +4,8 @@ shinyUI(fluidPage(
   titlePanel("Карта світу"),
   sidebarLayout(
     sidebarPanel(
-      #fileInput('file1', 'Завантажте файл з даними',
-      #          accept = c(".xlsx")),
+      fileInput('file1', 'Завантажте файл з даними',
+                accept = c(".xlsx")),
       sliderInput("coordlat","Нахил в довготі",-180,180,60),
       sliderInput("coordlon","Нахил в широті",-90,90,-20),
       selectInput("typ","Тип мапи",choices = rev(c(
