@@ -4,34 +4,6 @@ shinyServer(function(input, output, session){
     s  
   })
   
- # cachedTbl <- NULL
- # 
- # 
- #validate <- function(tbl){
- #  updateTableStyle(session, "tbl", "valid",  which(as.numeric(tbl$num2) < 50), 2)
- #  updateTableStyle(session, "tbl", "warning",which(as.numeric(tbl$num2) >= 50 &  as.numeric(tbl$num2) < 100), 2)
- #  updateTableStyle(session, "tbl", "invalid",which(as.numeric(tbl$num2) >= 100), 2)    
- #}
- # 
- # 
- # output$tbl <- renderHtable({
- #   if (is.null(input$tbl)){
- #     rows <- 25
- #     tbl <- data.frame(list(Країна=1:rows, 
- #                            Згадки=c(1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4,5,5,6,7,8,9)))
- #     rownames(tbl) <- LETTERS[2:(rows+1)]
- #     validate(tbl)
- #     cachedTbl <<- tbl      
- #     return(tbl)
- #   } else{
- #     tbl <- input$tbl
- #     #tbl[is.na(as.integer(as.character(tbl[,1]))),1] <- as.character(cachedTbl[is.na(as.integer(as.character(tbl[,1]))),1])
- #     validate(tbl)
- #     #tbl[as.integer(as.character(tbl[,1])) >= 100,1] <- 99
- #     cachedTbl <<- tbl
- #     return(tbl)
- #   }
- # })
   df <- reactive({
     inFile <- input$file1
     
@@ -65,11 +37,11 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot(world.ggmap, aes(map_id = id,group=group)) +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = input$mincol) +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5,family="PT Sans"))} +
-        {if(Switch)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white",family="PT Sans"))} +
+        {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5,family="PT Sans"))} +
+        {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
+        {if(input$ckeck2==T)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white",family="PT Sans"))} +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
           legend.position = "none"
@@ -111,11 +83,11 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot() +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = input$mincol) +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group,id=id), data =world.ggmap, color = "grey",size=0.1)+
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
-        {if(Switch)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white"))} +
+        {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
+        {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
+        {if(input$ckeck2==T)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white"))} +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
           legend.position = "none"
@@ -155,11 +127,11 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot(world.ggmap, aes(map_id = id,group=group)) +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = input$mincol) +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
-        {if(Switch)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
-        {if(Switch)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white"))} +
+        {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
+        {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
+        {if(input$ckeck2==T)with(centroids, annotate(geom="text", x = long, y=lat+3, label = X1, size = 6, color="white"))} +
         #expand_limits(x = world.ggmap$long, y = world.ggmap$lat) + 
         theme_void() + theme(
           legend.position = "none"

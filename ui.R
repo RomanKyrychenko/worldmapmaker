@@ -9,6 +9,7 @@ shinyUI(fluidPage(
       textInput("mincol","Колір для мінімуму","#f0f0f0"),
       textInput("maxcol","Колір для максимуму","#4d738a"),
       checkboxInput("ckeck","З пимпочками",T),
+      checkboxInput("ckeck2","З назвами",T),
       sliderInput("coordlat","Нахил в довготі",-180,180,60),
       sliderInput("coordlon","Нахил в широті",-90,90,-20),
       selectInput("typ","Тип мапи",choices = rev(c(
