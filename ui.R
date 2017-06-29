@@ -6,6 +6,9 @@ shinyUI(fluidPage(
     sidebarPanel(
       fileInput('file1', 'Завантажте файл з даними',
                 accept = c(".xlsx")),
+      textInput("mincol","Колір для мінімуму","#f0f0f0"),
+      textInput("maxcol","Колір для максимуму","#4d738a"),
+      checkboxInput("ckeck","З пимпочками",T),
       sliderInput("coordlat","Нахил в довготі",-180,180,60),
       sliderInput("coordlon","Нахил в широті",-90,90,-20),
       selectInput("typ","Тип мапи",choices = rev(c(
