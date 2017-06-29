@@ -37,7 +37,7 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot(world.ggmap, aes(map_id = id,group=group)) +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "#E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
         {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5,family="PT Sans"))} +
         {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
@@ -83,7 +83,7 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot() +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "#E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group,id=id), data =world.ggmap, color = "grey",size=0.1)+
         {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
         {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
@@ -127,7 +127,7 @@ shinyServer(function(input, output, session){
       #y2 <- max(world.ggmap[!is.na(world.ggmap$X1),2])
       
       ggplot(world.ggmap, aes(map_id = id,group=group)) +
-        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "E5E0DE") +
+        scale_fill_gradient(low=input$mincol, high=input$maxcol,na.value = "#E5E0DE") +
         geom_polygon(aes(long,lat,fill = X1,group=group), data =world.ggmap, color = "grey",size=0.1)+
         {if(input$ckeck==T)with(centroids, annotate(geom="text", x = long, y=lat-1, label = label, size = 5))} +
         {if(input$ckeck==T)with(centroids,annotate(geom="point",x = long, y=lat+3,color="#3bdd6d",fill="#3bdd6d",size=10))} +
