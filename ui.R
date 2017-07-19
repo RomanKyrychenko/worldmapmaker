@@ -6,8 +6,11 @@ shinyUI(fluidPage(
     sidebarPanel(
       fileInput('file1', 'Завантажте файл з даними',
                 accept = c(".xlsx")),
-      textInput("mincol","Колір для мінімуму","#f0f0f0"),
-      textInput("maxcol","Колір для максимуму","#4d738a"),
+      colourInput("mincol", label = "Колір для мінімуму:", value = "#f0f0f0"),
+      #textInput("mincol","Колір для мінімуму","#f0f0f0"),
+      colourInput("maxcol", label = "Колір для максимуму:", value = "#4d738a"),
+      #textInput("maxcol","Колір для максимуму","#4d738a"),
+      colourInput("nacol", label = "Колір для NA:", value = "#E5E0DE"),
       checkboxInput("ckeck","З пимпочками",T),
       checkboxInput("ckeck2","З назвами",T),
       sliderInput("coordlat","Нахил в довготі",-180,180,60),

@@ -17,6 +17,7 @@ library(geosphere)
 library(plyr)
 library(shinyTable)
 library(mapproj)
+library(colourpicker)
 load("mapdata.RData")
 
 #world.map <- readShapePoly("TM_WORLD_BORDERS_SIMPL-0.3.shp")
