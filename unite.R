@@ -67,11 +67,11 @@ ui <- dashboardPage(skin = "yellow",
                         br(),
                         hr(),
                         menuItem("Documentation", icon = icon("file-text-o"), 
-                                 href = "https://github.com/RomanKyrychenko/digest/blob/master/README.md"),
+                                 href = "https://github.com/RomanKyrychenko/worldmapmaker/blob/master/README.md"),
                         menuItem("Feedback & suggestion", icon = icon("envelope-o"),
                                  href = "mailto:?Roman.Kyrychenko@corestone.expert?subject=Feedback on Corestone work tools app"),
                         menuItem("Source code", icon = icon("file-code-o"), 
-                                 href = "https://github.com/RomanKyrychenko/digest"),
+                                 href = "https://github.com/RomanKyrychenko/worldmapmaker"),
                         menuItem("Fork me @ github", icon = icon("code-fork"), 
                                  href = "https://github.com/RomanKyrychenko") 
                       )
